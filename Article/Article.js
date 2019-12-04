@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'I added this section recently!',
+    date: 'Dec 5th, 2019',
+    firstParagraph: `Lorem is boring`,
+
+    secondParagraph: `Lipsum is time consuming`,
+
+    thirdParagraph: `LOL`
+  },
+  {
+    title: 'I added this section recently!',
+    date: 'Dec 5th, 2019',
+    firstParagraph: `Lorem is boring`,
+
+    secondParagraph: `Lipsum is time consuming`,
+
+    thirdParagraph: `LOL`
   }
 ];
 
@@ -122,11 +140,13 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   const articleSecondParagraph = document.createElement('p');
   const articleThirdParagraph = document.createElement('p');
   const expandButton = document.createElement('span');
+  const articleClose = document.createElement('div');
 
   // set classes
   article.classList.add('article');
   articleDate.classList.add('date');
   expandButton.classList.add('expandButton');
+  articleClose.classList.add('article-close');  
 
   // setup structure of the elements
   article.appendChild(articleTitle);
@@ -135,6 +155,8 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   article.appendChild(articleSecondParagraph);
   article.appendChild(articleThirdParagraph);
   article.appendChild(expandButton);
+  article.appendChild(articleClose);
+
 
   // set content
   articleTitle.textContent = title;
@@ -143,20 +165,19 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   articleSecondParagraph.textContent = secondParagraph;
   articleThirdParagraph.textContent = thirdParagraph;
 
+  expandButton.textContent = "Click Me";
+
+  expandButton.addEventListener('click', () => {
+    // console.log('clicked', event.target)
+    // articleClose.classList.toggle('hide-btn');
+    article.classList.toggle('article-open');
+  })
+
   return article
 }
 
 const articles = document.querySelector('.articles');
 
-data.forEach(d => {
+data.map(d => {
   articles.appendChild(createArticle(d.title, d.date, d.firstParagraph, d.secondParagraph, d.thirdParagraph))
 })
-
-{/* <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
-
-    {three separate paragraph elements}
-
-    <span class='expandButton'></span>
-  </div> */}
