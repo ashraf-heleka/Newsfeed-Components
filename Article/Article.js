@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'I added this section recently!',
+    date: 'Dec 5th, 2019',
+    firstParagraph: `Lorem is boring`,
+
+    secondParagraph: `Lipsum is time consuming`,
+
+    thirdParagraph: `LOL`
+  },
+  {
+    title: 'I added this section recently!',
+    date: 'Dec 5th, 2019',
+    firstParagraph: `Lorem is boring`,
+
+    secondParagraph: `Lipsum is time consuming`,
+
+    thirdParagraph: `LOL`
   }
 ];
 
@@ -112,3 +130,54 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  // define the elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstParagraph = document.createElement('p');
+  const articleSecondParagraph = document.createElement('p');
+  const articleThirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+  const articleClose = document.createElement('div');
+
+  // set classes
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+  articleClose.classList.add('article-close');  
+
+  // setup structure of the elements
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirstParagraph);
+  article.appendChild(articleSecondParagraph);
+  article.appendChild(articleThirdParagraph);
+  article.appendChild(expandButton);
+  article.appendChild(articleClose);
+
+
+  // set content
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleFirstParagraph.textContent = firstParagraph;
+  articleSecondParagraph.textContent = secondParagraph;
+  articleThirdParagraph.textContent = thirdParagraph;
+
+  expandButton.textContent = "Click Me";
+
+  expandButton.addEventListener('click', () => {
+    // console.log('clicked', event.target)
+    // articleClose.classList.toggle('hide-btn');
+    article.classList.toggle('article-open');
+  })
+
+  return article
+}
+
+const articles = document.querySelector('.articles');
+
+data.map(d => {
+  articles.appendChild(createArticle(d.title, d.date, d.firstParagraph, d.secondParagraph, d.thirdParagraph))
+})
